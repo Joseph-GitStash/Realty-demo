@@ -174,7 +174,7 @@ const FounderCard = ({
             className="w-full h-full object-cover cursor-pointer"
           />
         </div>
-        <h3 className="font-bold text-[14px] md:text-lg tracking-wide mb-1">{name}</h3>
+        <h3 className="font-bold text-[14px] md:text-lg tracking-wide mb-1">{name.slice(0, 21)}</h3>
         <p className="text-white/80 font-semibold text-[13px] md:text-[15px] mb-2">{role.slice(0, 20)}...</p>
         <div className="flex gap-4">
           <motion.div
@@ -250,7 +250,7 @@ const MemberDetails = ({
   
           <div className="cursor-auto pt-3">
             {/* <h3 className="font-semibold text-lg">About</h3> */}
-            <p className="text-white/80 text-[13px] leading-6 md:text-[14px] tracking-wide font-[600] ">
+            <p className="text-white/80 text-[14px] leading-6 md:text-[17px] tracking-wide font-[600] ">
             {founder.description}
             </p>
           </div>
@@ -258,7 +258,7 @@ const MemberDetails = ({
           
           <button 
               onClick={onClose}
-              className="text-white/55 tracking-wider hover:text-white border-[0.5px] border-white/55 hover:border-white py-[7px] rounded-full font-bold mt-3 w-full mb-12"
+              className="text-white/55 tracking-wider hover:text-white border-[0.5px] border-zinc-50/10 text-[15px] md:text-[16px] hover:border-white py-[7px] rounded-full font-bold mt-5 w-full mb-12"
           >
               Close    
           </button>
@@ -345,7 +345,7 @@ const Founders = () => {
             <h2 className="text-3xl font-bold mb-2">
               Meet the team
             </h2>
-            <p className="text-[13px] md:text-[17px] tracking-wide font-semibold text-white/80">
+            <p className="text-[14px] md:text-[18px] tracking-wide font-semibold text-white/80">
               Meet the passionate investment professionals behind realty corp.
             </p>
           </div>
@@ -367,10 +367,6 @@ const Founders = () => {
               initial="hidden"
               animate="show"
               exit="exit"
-              drag={true}
-              dragSnapToOrigin
-              dragElastic={0.1}
-              onDragEnd={handleDragEnd}
               style={{
                 touchAction: "none",
                 x: 0,

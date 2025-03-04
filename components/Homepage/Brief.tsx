@@ -44,7 +44,7 @@ const Brief = () => {
   return (
     <div id='about' className='w-full flex flex-col md:justify-end md:items-end py-16 '>
       <div className="mb-[2rem]"></div>
-        <p className="text-[13px] shadow-black shadow-2xl md:text-[17px] font-semibold text-white/80 tracking-wide md:text-end ">
+        <p className="text-[14px] shadow-black shadow-2xl md:text-[18px] font-semibold text-white/80 tracking-wide md:text-end ">
         Realty Corporation is a privately held firm with Real Estate investment and advisory activities in Europe and the United States. Combining intellectual curiosity, deep market knowledge, and decades-long relationships, we identify and execute investments transactions where we have steadfast conviction on delivering superior returns for our own balance sheet and for our co-investors.
         </p>
         <button className="flex justify-start relative cursor-pointer text-white/45 hover:text-white underline py-3 rounded-full text-[13px] md:text-[14px] font-bold tracking-wider transition-all hover:shadow-lg"
