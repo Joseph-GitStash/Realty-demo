@@ -148,8 +148,8 @@ const navbarVariants = {
                 key={link.href}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className={`${
-                  pathname === link.href ? "ring-1 ring-white/35 text-white" : "text-white/85"
-                } nav-link hover:ring-1 hover:ring-white/30 hover:text-white`}
+                  pathname === link.href ? " text-white" : "text-white/85"
+                } nlink hover:translate-x-2 hover:duration-200 hover:ease-in hover:transition-all hover:text-white p-0`}
               >
                 {link.label}
               </Link>
@@ -163,9 +163,9 @@ const navbarVariants = {
 
             <div className="flex">
               <div className="flex gap-2">
-                <PiFacebookLogo className="w-5 h-5 text-white/80 hover:text-white cursor-pointer " />
-                <PiLinkedinLogo className="w-5 h-5 text-white/80 hover:text-white cursor-pointer " />
-                <PiTwitterLogo className="w-5 h-5 text-white/80 hover:text-white cursor-pointer " />
+                <PiFacebookLogo className="w-5 h-5 text-white/80 hover:text-white cursor-pointer hover:w-7 hover:h-7 duration-200 hover:transition-all ease-in" />
+                <PiLinkedinLogo className="w-5 h-5 text-white/80 hover:text-white cursor-pointer hover:w-7 hover:h-7 duration-200 hover:transition-all ease-in" />
+                <PiTwitterLogo className="w-5 h-5 text-white/80 hover:text-white cursor-pointer hover:w-7 hover:h-7 duration-200 hover:transition-all ease-in" />
               </div>
               
             </div>

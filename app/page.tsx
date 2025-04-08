@@ -1,7 +1,7 @@
 import { BentoGridSection } from "@/components/Homepage/BentoGridSection";
 import Brief from "@/components/Homepage/Brief";
-import Founders from "@/components/Homepage/Founders";
 import Hero from "@/components/Homepage/Hero";
+import TeamCarousel from "@/components/Homepage/TeamCarousel";
 import TeamDesc from "@/components/Homepage/TeamDesc";
 import Trusted from "@/components/Homepage/Trusted";
 
@@ -13,7 +13,7 @@ export default function Home() {
       <Brief />
       <BentoGridSection />
       <TeamDesc />
-      <Founders />
+      <TeamCarousel />
     </div>
   );
 }

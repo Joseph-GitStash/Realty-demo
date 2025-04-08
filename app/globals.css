@@ -60,4 +60,7 @@ body {
   .customBorder:nth-child(2){
     @apply border-b md:border-b-0 md:border-r border-zinc-50/10
   }
+  .nlink{
+    @apply grid items-center h-9 text-[15px] md:text-[13px] lg:text-sm font-bold tracking-wider hover:text-white transition-colors rounded-[3px] 
+   }
 }

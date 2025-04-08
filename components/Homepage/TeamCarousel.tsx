@@ -1,14 +1,18 @@
 'use client'
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css';
+import 'swiper/css/navigation';
+import {  Navigation } from 'swiper/modules'
 
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
+
 import {
   PiArrowArcLeft,
   PiArrowArcRight,
   PiFacebookLogo,
-  PiGlobe,
   PiLinkedinLogo,
   PiTwitterLogo,
 } from "react-icons/pi";
@@ -258,7 +262,7 @@ const MemberDetails = ({
           
           <button 
               onClick={onClose}
-              className="text-white/55 tracking-wider hover:text-white border-[0.5px] border-zinc-50/10 text-[15px] md:text-[16px] hover:border-white py-[7px] rounded-full font-bold mt-5 w-full mb-12"
+              className="text-white/50 tracking-wider hover:text-white/65 border-[0.5px] border-zinc-50/10 text-[15px] md:text-[16px] hover:border-white/25 py-[7px] rounded-md font-medium mt-5 w-full mb-12 transition-all duration-100"
           >
               Close    
           </button>
@@ -268,150 +272,90 @@ const MemberDetails = ({
   };
 
 
+const TeamCarousel = () => {
+  const [selectedFounder, setSelectedFounder] = useState<
+              (typeof founders)[0] | null
+            >(null);
 
-const Founders = () => {
-
-    const [selectedFounder, setSelectedFounder] = useState<
-            (typeof founders)[0] | null
-          >(null);
-    const [startIndex, setStartIndex] = useState(0);
-    const [itemsToShow, setItemsToShow] = useState(4);
-    const [isMobile, setIsMobile] = useState(false);
-
-
-    useEffect(() => {
-        const handleResize = () => {
-          const mobile = window.innerWidth < 768;
-          setIsMobile(mobile);
-          setItemsToShow(mobile ? 2 : 4);
-          setStartIndex((prev) => {
-            const maxStart = founders.length - (mobile ? 2 : 4);
-            return prev > maxStart ? maxStart : prev;
-          });
-        };
-    
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-      }, [founders.length]);
-
-
-      const next = () => {
-        setStartIndex((prev) => {
-          const nextIndex = prev + 1;
-          const maxStart = founders.length - itemsToShow;
-          return nextIndex > maxStart ? 0 : nextIndex;
-        });
-      };
-    
-      const prev = () => {
-        setStartIndex((prev) => {
-          const nextIndex = prev - 1;
-          return nextIndex < 0 ? founders.length - itemsToShow : nextIndex;
-        });
-      };
-    
-      type PanInfo = {
-        offset: {
-          x: number;
-          y: number;
-        };
-        velocity: {
-          x: number;
-        };
-      };
-
-      const handleDragEnd = (_event: never, info: PanInfo) => {
-        const swipeThreshold = 50;
-        if (
-          info.offset.x < -swipeThreshold &&
-          startIndex < founders.length - itemsToShow
-        ) {
-          next();
-        } else if (info.offset.x > swipeThreshold && startIndex > 0) {
-          prev();
-        }
-      };
-    
-      const visibleFounders = founders.slice(startIndex, startIndex + itemsToShow);
-
-    
-    return ( 
-        <div id="team"
-        className="py-16 md:py-32"
-      >
-        <div className="flex justify-between items-center mb-12">
-          <div>
-            <h2 className="text-3xl font-bold mb-2">
-              Meet the team
-            </h2>
-            <p className="text-[14px] md:text-[18px] tracking-wide font-semibold text-white/80">
-              Meet the passionate investment professionals behind realty corp.
-            </p>
+  return (
+    <section className='mb-10 w-full py-16 md:mx-0 2xl:w-4/5 md:px-0'>
+      <div className="flex justify-between items-center mb-12">
+        <div>
+          <h2 className="text-3xl font-bold mb-2">
+            Meet the team
+          </h2>
+          <p className="text-[14px] md:text-[18px] tracking-wide font-semibold text-white/80">
+            Meet the passionate investment professionals behind realty corp.
+          </p>
           </div>
           <div className="hidden md:flex gap-2">
-            <motion.button onClick={prev}>
-              <PiArrowArcLeft className="text-white/45 border rounded-full flex items-center justify-center text-4xl p-2 hover:text-white transition-colors" />
+            <motion.button>
+              <PiArrowArcLeft className="prev text-white/45 border rounded-full flex items-center justify-center text-4xl p-2 hover:text-white transition-colors outline-none" />
             </motion.button>
-            <motion.button onClick={next}>
-              <PiArrowArcRight className="text-white/45 border rounded-full flex items-center justify-center text-4xl p-2 hover:text-white transition-colors" />
+            <motion.button>
+              <PiArrowArcRight className="next text-white/45 border rounded-full flex items-center justify-center text-4xl p-2 hover:text-white transition-colors outline-none" />
             </motion.button>
           </div>
         </div>
-  
-        <div className="relative max-w-full overflow-hidden">
-          <AnimatePresence >
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8"
-              key={startIndex}
-              initial="hidden"
-              animate="show"
-              exit="exit"
-              style={{
-                touchAction: "none",
-                x: 0,
-              }}
-            >
-              {visibleFounders.map((founder, index) => (
-                <FounderCard 
-                  key={index}
-                  {...founder}
-                  onClick={() => setSelectedFounder(founder)}
-                />
-              ))}
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="flex justify-end md:hidden gap-2">
-            <motion.button onClick={prev}>
-              <PiArrowArcLeft className="text-white/45 border rounded-full flex items-center justify-center text-4xl p-2 hover:text-white transition-colors" />
-            </motion.button>
-            <motion.button onClick={next}>
-              <PiArrowArcRight className="text-white/45 border rounded-full flex items-center justify-center text-4xl p-2 hover:text-white transition-colors" />
-            </motion.button>
-          </div>
-
-          <AnimatePresence>
-            {selectedFounder && (
-              <>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.5 }}
-                  exit={{ opacity: 0 }}
-                  className="fixed inset-0 bg-black z-40"
-                  onClick={() => setSelectedFounder(null)}
-                />
-                  <MemberDetails
-                    founder={selectedFounder}
-                    onClose={() => setSelectedFounder(null)}
-                  />
-              </>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
     
-);
+      <div className="relative max-w-full overflow-hidden">
+        <Swiper slidesPerView={1} 
+          spaceBetween={20}
+          navigation={{
+            prevEl: '.prev',
+            nextEl: '.next',
+          }}
+          breakpoints={{
+            320: { slidesPerView: 2 },
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024:{ slidesPerView: 4 },
+            1310:{ slidesPerView: 4 },
+          }} 
+          modules={[Navigation]}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+            {firstRow.map((review, index) => (
+              <SwiperSlide key={index}>
+                <FounderCard
+                  key={index}
+                  {...review}
+                  onClick={() => setSelectedFounder(review)}
+              />
+              </SwiperSlide>
+            ))}
+          </div>
+        </Swiper>
+      </div>
+
+      <div className="flex justify-end md:hidden gap-2">
+        <motion.button>
+          <PiArrowArcLeft className="prev text-white/45 border rounded-full flex items-center justify-center text-4xl p-2 hover:text-white transition-colors outline-none" />
+        </motion.button>
+        <motion.button>
+          <PiArrowArcRight className="next text-white/45 border rounded-full flex items-center justify-center text-4xl p-2 hover:text-white transition-colors outline-none" />
+        </motion.button>
+      </div>
+              
+      <AnimatePresence>
+        {selectedFounder && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black z-40"
+              onClick={() => setSelectedFounder(null)}
+            />
+              <MemberDetails
+                founder={selectedFounder}
+                onClose={() => setSelectedFounder(null)}
+              />
+          </>
+        )}
+      </AnimatePresence>
+    </section>
+  )
 }
- 
-export default Founders;
+
+export default TeamCarousel

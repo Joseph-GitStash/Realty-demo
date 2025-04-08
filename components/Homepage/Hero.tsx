@@ -74,60 +74,51 @@ const firstRow = pitchblock.slice(0, pitchblock.length);
 
     
   return(
-    <div className="flex flex-col items-center">
+    <div className="flex md:h-[500px] flex-col items-center">
       {/* Main Content Section */}
       {/* <p className='pt-18 gap-[5px] items-center border-gradient text-[12px] tracking-wide bg-zinc-50/10 font-semibold md:text-[15px] inline-flex py-1 px-3 rounded-full mb-3 '>
         <span className=' bg-white rounded w-2 h-2'></span>
           Invested in 500+ startups
       </p> */}
       <div
-        className="w-full flex justify-center pt-18 items-center md:px-0  "
+        className="w-full flex pt-18 items-center md:px-0  "
       >
-        <div className="text-start ">
+        <div className="text-start w-full">
           <h1
-            className="text-[27px] pt-[20px] leading-[40px] md:text-6xl font-bold mb-4 md:mb-12"
+            className="text-[27px] md:pt-[80px]  leading-[40px] md:text-6xl font-bold mb-4 md:mb-12"
           >
             <span className="inline-block">
               Experience the excellence
             </span>
             <br />
             <span className="inline-block">
-              of Real estate investment startegies
+              of Real estate investment strategies
             </span>
           </h1>
 
-          <p className="text-[13px] text-end shadow-2xl md:text-[17px] font-semibold mt-[30px] text-white/90 tracking-wider mb-3">
-            We fix broken capital stack and deliver
-            <br />
-            smart expertise on leasing strategies.
-          
-          </p>
-
-          <div
-            className="flex text-end flex-row gap-y-2 gap-x-2 md:gap-x-3 justify-end mb-10"
-          >
-            <div className="w-[180px]">
-            {firstRow.map((pitch, index) => (
-              <PitchButton
-                key={index}
-                {...pitch}
-                onClick={() => setSelectedPitch(pitch)}
-              />
-            ))}
-
-            {/* <a
-              href="/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-red-500 hover:bg-red-600 text-white
-               px-6 md:px-8 py-2 rounded-full
-                font-bold  transition-all hover:shadow-lg inline-block"
-            >
-              Book a meeting
-            </a> */}
-            </div>
+          <div className="flex text-end w-full flex-col">
+            <p className="text-[13px] shadow-2xl md:text-[17px] font-semibold mt-[30px] text-white/90 tracking-wider mb-3">
+              We fix broken capital stack and deliver
+              <br />
+              smart expertise on leasing strategies.
             
+            </p>
+
+            <div
+              className="flex text-end flex-row gap-y-2 gap-x-2 md:gap-x-3 justify-end mb-10"
+            >
+              <div className="w-[180px]">
+              {firstRow.map((pitch, index) => (
+                <PitchButton
+                  key={index}
+                  {...pitch}
+                  onClick={() => setSelectedPitch(pitch)}
+                />
+              ))}
+              </div>
+            </div>
           </div>
+          
         </div>
       </div>
 
